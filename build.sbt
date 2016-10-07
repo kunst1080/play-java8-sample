@@ -3,6 +3,7 @@ name := """play-java8-sample"""
 version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava)
+                                      .enablePlugins(PlayEbean)
 
 scalaVersion := "2.11.7"
 
