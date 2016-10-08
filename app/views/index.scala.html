@@ -1,0 +1,45 @@
+@()
+
+@views.html.main("一覧") {
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <div class="input-group col-sm-4">
+      	<input type="text" class="form-control" placeholder="名前">
+      	<a class="btn input-group-addon">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          検索
+        </a>
+      </div>
+    </div>
+    <div>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>名前</th>
+            <th>学年</th>
+            <th>身長</th>
+            <th>誕生日</th>
+            <th>好きな食べ物</th>
+            <th>作成日時</th>
+            <th>更新日時</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>高海 千歌</td>
+            <td>2年生</td>
+            <td>157cm</td>
+            <td>8月1日</td>
+            <td>みかん！</td>
+            <td>9999/99/99 99:99:99</td>
+            <td>9999/99/99 99:99:99</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+}
