@@ -14,3 +14,7 @@ libraryDependencies ++= Seq(
 )
 
 libraryDependencies += "org.projectlombok" % "lombok" % "1.16.10"
+
+// LESS compile setting
+includeFilter in (Assets, LessKeys.less) := "*.less"
+excludeFilter in (Assets, LessKeys.less) := "_*.less"
