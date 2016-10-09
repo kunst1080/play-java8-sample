@@ -1,0 +1,51 @@
+@(userForm: Form[tables.T_User], isEdit: Boolean, message: String)
+
+@id = @{userForm("id").value.toLong}
+
+@action = @{
+  if (isEdit) {
+    routes.UserController.update(id)
+  } else {
+    routes.UserController.create()
+  }
+}
+
+@views.html.main("一覧") {
+<div class="container">
+  <div class="row">
+    @if(message != null) {
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる"><span aria-hidden="true">×</span></button>
+        @message
+      </div>
+    }
+    <div class="col-lg-12">
+    @helper.form(action = action) {
+      <input type="hidden" value="@userForm("id").value" name="id">
+      @helper.inputText(userForm("name"),
+        '_label -> "名前")
+      @helper.inputText(userForm("schoolYear"),
+        '_label -> "学年")
+      @helper.inputText(userForm("birthDay"),
+        'placeholder -> "yyyy-MM-dd",
+        '_label -> "誕生日")
+      @helper.inputText(userForm("height"),
+        '_label -> "身長")
+      @helper.inputText(userForm("food"),
+        '_label -> "好きな食べ物")
+      <input type="submit" class="btn btn-primary" value="登録" />
+    }
+    </div>
+  </div>
+  @if(isEdit) {
+    <hr>
+    <div class="row">
+      <div class="col-lg-12">
+        @helper.form(action = routes.UserController.delete(id)) {
+          <input type="submit" class="btn btn-danger" value="削除" />
+        }
+      </div>
+    </div>
+  }
+</div>
+}
