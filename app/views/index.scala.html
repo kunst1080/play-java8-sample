@@ -1,16 +1,22 @@
-@()
+@(userForm: Form[UserForm], items: List[Form[UserItem]])
 
 @views.html.main("一覧") {
 <div class="container">
   <div class="row">
     <div class="page-header">
-      <div class="input-group col-sm-4">
-      	<input type="text" class="form-control" placeholder="名前">
-      	<a class="btn input-group-addon">
-          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-          検索
-        </a>
-      </div>
+      @helper.form(action = routes.Application.index()) {
+        <div class="form-inline">
+          <div class="input-group col-sm-4">
+          	<input type="text" class="form-control" placeholder="名前" name="searchWord" value="@userForm("searchWord").value">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                検索
+              </button>
+            </span>
+          </div>
+        </div>
+      }
     </div>
     <div>
       <table class="table table-bordered table-striped">
@@ -27,16 +33,18 @@
           </tr>
         </thead>
         <tbody>
+        @items.map { field =>
           <tr>
-            <td>1</td>
-            <td>高海 千歌</td>
-            <td>2年生</td>
-            <td>157cm</td>
-            <td>8月1日</td>
-            <td>みかん！</td>
-            <td>9999/99/99 99:99:99</td>
-            <td>9999/99/99 99:99:99</td>
+            <td>@field("id").value</td>
+            <td>@field("name").value</td>
+            <td>@field("schoolYear").value</td>
+            <td>@field("height").value</td>
+            <td>@field("birthDay").value</td>
+            <td>@field("food").value</td>
+            <td>@field("createdAt").value</td>
+            <td>@field("updatedAt").value</td>
           </tr>
+        }
         </tbody>
       </table>
     </div>
